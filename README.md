@@ -22,10 +22,6 @@
 | `task3_filter/` | материалы ДЗ: `FilterGen`, `FilterCheck`, `FilterCL`, `FilterCL_solution` | ДЗ (рабочая копия преподавателя) |
 | `student/` | **выдача студентам**: постановка ДЗ + `FilterGen`, `FilterCheck`, `FilterCL` | раздача целиком |
 
-Формат `vector.txt`: первая строка — N, далее N строк «A[i] B[i]».
-`VectorGen` без аргумента создает 25 000 000 пар — для занятия задавайте N явно!
-Матричные данные генерируются внутри программы (фиксированный `srand(42)`,
-CPU- и GPU-версии считают одни и те же числа).
 
 ---
 
@@ -163,5 +159,4 @@ clang++ -O2 -std=c++17 task2_matrix/MatrixSumCL/MatrixSumCL.cpp -o msum_cl -fram
 ./gen 25 && ./vsum_cpu && ./vsum_cl
 ./msum_cpu && ./msum_cl
 ```
-На macOS доступен OpenCL 1.2; на Apple GPU нет double (в этих задачах он не нужен).
 
