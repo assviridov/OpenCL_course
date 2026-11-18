@@ -1,4 +1,4 @@
-# Домашнее задание: фильтрация биомедицинского сигнала на GPU: фильтрация биомедицинского сигнала на GPU
+# Домашнее задание: фильтрация биомедицинского сигнала на GPU
 
 ДЗ к занятию «сложение векторов и матриц». Новое относительно занятия:
 **цикл внутри ядра**, **разные данные для разных строк сетки**, **вещественные числа**.
@@ -97,7 +97,7 @@
    на macOS — `Debug mac` (линковка OpenCL отличается: `-lOpenCL` на Windows,
    `-framework OpenCL` на macOS). Порядок работы: соберите и запустите `FilterGen`
    (создаст `input.txt`), затем `FilterCheck` (эталон), затем свой `FilterCL`.
-5. Рабочая папка при запуске задана в `.cbp` как корень репозитория: `FilterGen` создаст
+5. Рабочая папка при запуске задана в `.cbp` как корень папки ДЗ: `FilterGen` создаст
    `input.txt` в корне папки ДЗ (рядом с `OpenCL_hw.workspace`), и `FilterCheck`/`FilterCL` прочитают
    его оттуда. Папки `bin\`, `obj\` внутри проектов — артефакты сборки.
 
@@ -110,8 +110,12 @@
 clang++ -O2 -std=c++17 FilterGen/FilterGen.cpp -o fgen
 clang++ -O2 -std=c++17 FilterCheck/FilterCheck.cpp -o fcheck
 clang++ -O2 -std=c++17 FilterCL/FilterCL.cpp -o fcl -framework OpenCL
+
+# Часть A: данные из условия
+cp example.txt input.txt && ./fcl
+
+# Часть B: сгенерированные данные (сверка с эталоном)
 ./fgen 8 1000 101 7 && ./fcheck && ./fcl
-./fcl   # на example.txt: скопируйте example.txt в input.txt
 ```
 
 ## Что отложено на следующие занятия
