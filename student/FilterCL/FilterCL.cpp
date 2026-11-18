@@ -101,7 +101,9 @@ int main()
 #ifdef __APPLE__
     cl_command_queue queue = clCreateCommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
 #else
-    cl_command_queue_properties props[] = { CL_QUEUE_PROFILING_ENABLE, CL_TRUE, 0 };
+    // OpenCL 2.0+: массив пар "ключ -> значение", 0 - терминатор;
+    // значение ключа CL_QUEUE_PROPERTIES - битовое поле свойств очереди
+    cl_queue_properties props[] = { CL_QUEUE_PROPERTIES, CL_QUEUE_PROFILING_ENABLE, 0 };
     cl_command_queue queue = clCreateCommandQueueWithProperties(context, device, props, &err);
 #endif
     CHECK(err, "CreateQueue");

@@ -77,7 +77,9 @@ int main()
     // включаем профилирование, чтобы измерять время ядра через событие
     queue = clCreateCommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE, &err);
 #else
-    cl_command_queue_properties props[] = { CL_QUEUE_PROFILING_ENABLE, CL_TRUE, 0 };
+    // OpenCL 2.0+: массив пар "ключ -> значение", 0 - терминатор;
+    // значение ключа CL_QUEUE_PROPERTIES - битовое поле свойств очереди
+    cl_queue_properties props[] = { CL_QUEUE_PROPERTIES, CL_QUEUE_PROFILING_ENABLE, 0 };
     queue = clCreateCommandQueueWithProperties(context, device, props, &err);
 #endif
     CHECK(err, "CreateQueue");
