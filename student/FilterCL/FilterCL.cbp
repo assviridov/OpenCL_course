@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FilterCL" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option working_dir=".." />
+				<Option output="bin/Debug/FilterCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="OpenCL" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option working_dir=".." />
+				<Option output="bin/Release/FilterCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="OpenCL" />
+				</Linker>
+			</Target>
+			<Target title="Debug mac">
+				<Option working_dir=".." />
+				<Option output="bin/Debug/FilterCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-framework" />
+					<Add option="OpenCL" />
+				</Linker>
+			</Target>
+			<Target title="Release mac">
+				<Option working_dir=".." />
+				<Option output="bin/Release/FilterCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="bin/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-framework" />
+					<Add option="OpenCL" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++17" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="FilterCL.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

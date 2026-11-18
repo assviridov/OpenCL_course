@@ -1,0 +1,16 @@
+## Code::Blocks
+bin/
+obj/
+*.depend
+*.layout
+
+# macOS
+.DS_Store
+
+# binaries
+*.o
+*.out
+*.exe
+
+# generated test data
+input.txt

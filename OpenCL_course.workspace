@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="OpenCL_course">
+		<Project filename="task1_vectors/VectorGen/VectorGen.cbp" />
+		<Project filename="task1_vectors/VectorSum/VectorSum.cbp" />
+		<Project filename="task1_vectors/VectorSumCL/VectorSumCL.cbp" />
+		<Project filename="task2_matrix/MatrixSum/MatrixSum.cbp" />
+		<Project filename="task2_matrix/MatrixSumCL/MatrixSumCL.cbp" />
+		<Project filename="task3_filter/FilterGen/FilterGen.cbp" />
+		<Project filename="task3_filter/FilterCheck/FilterCheck.cbp" />
+		<Project filename="task3_filter/FilterCL/FilterCL.cbp" />
+		<Project filename="task3_filter/FilterCL_solution/FilterCL_solution.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
