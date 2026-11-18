@@ -176,6 +176,10 @@ int main()
         std::cout << "Нет данных профилирования: в TODO 2 не передано &kernelEvent" << std::endl;
     }
 
+    // полный цикл: обмен данными + ядро. Сравните с kernel-only:
+    // разница - время передачи данных (на unified memory она мала)
+    std::cout << "GPU time (transfer + kernel): " << tPipelineMs << " ms" << std::endl;
+
     // --- Часть A: печать массива r (дано; печатается, если данных немного) ---
     if ((size_t)N * M <= 100) {
         for (int ch = 0; ch < N; ch++) {
