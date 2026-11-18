@@ -6,13 +6,13 @@
 //   - размер запуска: {N столбцов, M строк}.
 
 #include <iostream>
+#include <chrono>   // steady_clock: монотонные часы с наносекундным разрешением
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
 #else
 #include <CL/cl.h>
 #endif
 #include <cstdlib>
-#include <ctime>
 
 #define CHECK(err, what) \
     if ((err) != CL_SUCCESS) { \
@@ -102,7 +102,7 @@ int main()
     cl_mem bufC = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(int) * M * N, NULL, &err); CHECK(err, "bufC");
 
     // --- Измерение 1: полный цикл (обмен данными + ядро) ---
-    clock_t tStart = clock();
+    auto tStart = std::chrono::steady_clock::now();
 
     clEnqueueWriteBuffer(queue, bufA, CL_TRUE, 0, sizeof(int) * M * N, A, 0, NULL, NULL);
     clEnqueueWriteBuffer(queue, bufB, CL_TRUE, 0, sizeof(int) * M * N, B, 0, NULL, NULL);
@@ -124,7 +124,8 @@ int main()
 
     clEnqueueReadBuffer(queue, bufC, CL_TRUE, 0, sizeof(int) * M * N, C, 0, NULL, NULL);
 
-    double tPipelineMs = (double)(clock() - tStart) * 1000.0 / CLOCKS_PER_SEC;
+    double tPipelineMs = std::chrono::duration<double, std::milli>(
+                             std::chrono::steady_clock::now() - tStart).count();
 
     // --- Измерение 2: только ядро, по событию ---
     cl_ulong tKernelStart = 0, tKernelEnd = 0;

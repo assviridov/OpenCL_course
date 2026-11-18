@@ -9,7 +9,7 @@
 #include <CL/cl.h>
 #endif
 #include <cstdio>
-#include <ctime>
+#include <chrono>   // steady_clock: монотонные часы с наносекундным разрешением
 
 #define CHECK(err, what) \
     if ((err) != CL_SUCCESS) { \
@@ -113,7 +113,7 @@ int main()
     cl_mem bufS  = clCreateBuffer(context, CL_MEM_READ_ONLY,  sizeof(int)    * (size_t)N,    NULL, &err); CHECK(err, "bufSel");
     cl_mem bufR  = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(float) * (size_t)N * M, NULL, &err); CHECK(err, "bufR");
 
-    clock_t tStart = clock();
+    auto tStart = std::chrono::steady_clock::now();
 
     clEnqueueWriteBuffer(queue, bufA,  CL_TRUE, 0, sizeof(float) * (size_t)N * M, a,  0, NULL, NULL);
     clEnqueueWriteBuffer(queue, bufB0, CL_TRUE, 0, sizeof(float) * (size_t)K,     b0, 0, NULL, NULL);
@@ -137,7 +137,8 @@ int main()
 
     clEnqueueReadBuffer(queue, bufR, CL_TRUE, 0, sizeof(float) * (size_t)N * M, r, 0, NULL, NULL);
 
-    double tPipelineMs = (double)(clock() - tStart) * 1000.0 / CLOCKS_PER_SEC;
+    double tPipelineMs = std::chrono::duration<double, std::milli>(
+                             std::chrono::steady_clock::now() - tStart).count();
 
     cl_ulong tKernelStart = 0, tKernelEnd = 0;
     if (kernelEvent != NULL &&

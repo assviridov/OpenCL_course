@@ -13,7 +13,7 @@
 #else
 #include <CL/cl.h>
 #endif
-#include <ctime>
+#include <chrono>   // steady_clock: монотонные часы с наносекундным разрешением
 
 #define CHECK(err, what) \
     if ((err) != CL_SUCCESS) { \
@@ -105,7 +105,7 @@ int main()
     size_t global = N;   // количество "исполнителей" = количество элементов
 
     // --- Измерение 1: полный цикл (обмен данными + ядро) ---
-    clock_t tStart = clock();
+    auto tStart = std::chrono::steady_clock::now();
 
     // копируем входные данные на устройство
     clEnqueueWriteBuffer(queue, bufA, CL_TRUE, 0, sizeof(int) * N, A, 0, NULL, NULL);
@@ -128,7 +128,8 @@ int main()
     // копируем результат обратно с устройства
     clEnqueueReadBuffer(queue, bufC, CL_TRUE, 0, sizeof(int) * N, C, 0, NULL, NULL);
 
-    double tPipelineMs = (double)(clock() - tStart) * 1000.0 / CLOCKS_PER_SEC;
+    double tPipelineMs = std::chrono::duration<double, std::milli>(
+                             std::chrono::steady_clock::now() - tStart).count();
 
     // --- Измерение 2: только ядро, по событию (дано, не меняйте) ---
     cl_ulong tKernelStart = 0, tKernelEnd = 0;

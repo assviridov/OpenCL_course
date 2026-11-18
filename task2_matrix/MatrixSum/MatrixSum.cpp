@@ -9,8 +9,8 @@
 //     с линейной.
 
 #include <iostream>
+#include <chrono>   // steady_clock: монотонные часы с наносекундным разрешением
 #include <cstdlib>
-#include <ctime>
 
 const int M = 8;   // строк
 const int N = 5;   // столбцов
@@ -46,16 +46,19 @@ int main()
     }
 
     // --- Измерение времени ---
-    clock_t tStart = clock();
+    // clock() на Windows имеет грубую гранулярность (~1-15 мс) и для
+    // микросекундной работы показывает 0. steady_clock меряет наносекунды.
+    auto tStart = std::chrono::steady_clock::now();
 
     sum(A, B, C, M, N);
 
-    double tMs = (double)(clock() - tStart) * 1000.0 / CLOCKS_PER_SEC;
+    auto tEnd = std::chrono::steady_clock::now();
+    double tUs = std::chrono::duration<double, std::micro>(tEnd - tStart).count();
 
     print(A, M, N, "A");
     print(B, M, N, "B");
     print(C, M, N, "C = A+B");
-    std::cout << "CPU time: " << tMs << " ms" << std::endl;
+    std::cout << "CPU time: " << tUs << " us" << std::endl;
 
     delete[] A;
     delete[] B;

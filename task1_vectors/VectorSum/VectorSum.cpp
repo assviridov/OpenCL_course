@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <ctime>
+#include <chrono>   // steady_clock: монотонные часы с наносекундным разрешением
 
 void sum(const int* A, const int* B, int* C, int n)
 {
@@ -34,17 +34,19 @@ int main()
     file.close();
 
     // --- Измерение времени (без учета чтения файла) ---
-    clock_t tStart = clock();
+    // clock() на Windows имеет грубую гранулярность; steady_clock меряет наносекунды.
+    auto tStart = std::chrono::steady_clock::now();
 
     sum(A, B, C, N);
 
-    double tMs = (double)(clock() - tStart) * 1000.0 / CLOCKS_PER_SEC;
+    double tUs = std::chrono::duration<double, std::micro>(
+                     std::chrono::steady_clock::now() - tStart).count();
 
     for (int i = 0; i < 10 && i < N; i++)
         std::cout << C[i] << " ";
     std::cout << (N > 10 ? "..." : "") << std::endl;
 
-    std::cout << "CPU time: " << tMs << " ms" << std::endl;
+    std::cout << "CPU time: " << tUs << " us" << std::endl;
 
     delete[] A;
     delete[] B;
