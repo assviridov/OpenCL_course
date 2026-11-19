@@ -39,14 +39,14 @@ int main()
 
     sum(A, B, C, N);
 
-    double tUs = std::chrono::duration<double, std::micro>(
+    double tNs = std::chrono::duration<double, std::nano>(
                      std::chrono::steady_clock::now() - tStart).count();
 
     for (int i = 0; i < 10 && i < N; i++)
         std::cout << C[i] << " ";
     std::cout << (N > 10 ? "..." : "") << std::endl;
 
-    std::cout << "CPU time: " << tUs << " us" << std::endl;
+    std::cout << "CPU time: " << tNs << " ns" << std::endl;
 
     delete[] A;
     delete[] B;

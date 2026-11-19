@@ -124,7 +124,7 @@ int main()
 
     clEnqueueReadBuffer(queue, bufC, CL_TRUE, 0, sizeof(int) * M * N, C, 0, NULL, NULL);
 
-    double tPipelineMs = std::chrono::duration<double, std::milli>(
+    double tPipelineNs = std::chrono::duration<double, std::nano>(
                              std::chrono::steady_clock::now() - tStart).count();
 
     // --- Измерение 2: только ядро, по событию ---
@@ -133,13 +133,12 @@ int main()
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_START, sizeof(cl_ulong), &tKernelStart, NULL) == CL_SUCCESS &&
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_END,   sizeof(cl_ulong), &tKernelEnd,   NULL) == CL_SUCCESS)
     {
-        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns ("
-                  << (tKernelEnd - tKernelStart) / 1000000.0 << " ms)" << std::endl;
+        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns" << std::endl;
         clReleaseEvent(kernelEvent);
     }
 
     print(C, M, N, "C = A+B");
-    std::cout << "GPU time (transfer + kernel): " << tPipelineMs << " ms" << std::endl;
+    std::cout << "GPU time (transfer + kernel): " << (long long)tPipelineNs << " ns" << std::endl;
 
     clReleaseMemObject(bufA);
     clReleaseMemObject(bufB);

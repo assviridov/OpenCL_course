@@ -53,12 +53,12 @@ int main()
     sum(A, B, C, M, N);
 
     auto tEnd = std::chrono::steady_clock::now();
-    double tUs = std::chrono::duration<double, std::micro>(tEnd - tStart).count();
+    double tNs = std::chrono::duration<double, std::nano>(tEnd - tStart).count();
 
     print(A, M, N, "A");
     print(B, M, N, "B");
     print(C, M, N, "C = A+B");
-    std::cout << "CPU time: " << tUs << " us" << std::endl;
+    std::cout << "CPU time: " << tNs << " ns" << std::endl;
 
     delete[] A;
     delete[] B;

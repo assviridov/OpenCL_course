@@ -90,8 +90,7 @@ int main()
 
     err = clBuildProgram(program, 0, NULL, NULL, NULL, NULL);
     if (err != CL_SUCCESS) {
-        std::cout << "Ядро не скомпилировалось. "
-                  << std::endl;
+        std::cout << "Kernel build failed." << std::endl;
         return 1;
     }
     kernel = clCreateKernel(program, "sum", &err);
@@ -128,7 +127,7 @@ int main()
     // копируем результат обратно с устройства
     clEnqueueReadBuffer(queue, bufC, CL_TRUE, 0, sizeof(int) * N, C, 0, NULL, NULL);
 
-    double tPipelineMs = std::chrono::duration<double, std::milli>(
+    double tPipelineNs = std::chrono::duration<double, std::nano>(
                              std::chrono::steady_clock::now() - tStart).count();
 
     // --- Измерение 2: только ядро, по событию (дано, не меняйте) ---
@@ -137,10 +136,9 @@ int main()
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_START, sizeof(cl_ulong), &tKernelStart, NULL) != CL_SUCCESS ||
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_END,   sizeof(cl_ulong), &tKernelEnd,   NULL) != CL_SUCCESS)
     {
-        std::cout << "Нет данных профилирования: в TODO 2 не передано &kernelEvent" << std::endl;
+        std::cout << "No profiling data: &kernelEvent was not passed in TODO 2" << std::endl;
     } else {
-        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns ("
-                  << (tKernelEnd - tKernelStart) / 1000000.0 << " ms)" << std::endl;
+        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns" << std::endl;
         clReleaseEvent(kernelEvent);
     }
 
@@ -149,7 +147,7 @@ int main()
         std::cout << C[i] << " ";
     std::cout << (N > 10 ? "..." : "") << std::endl;
 
-    std::cout << "GPU time (transfer + kernel): " << tPipelineMs << " ms" << std::endl;
+    std::cout << "GPU time (transfer + kernel): " << (long long)tPipelineNs << " ns" << std::endl;
 
     // --- Очистка (дано, не меняйте) ---
     clReleaseMemObject(bufA);

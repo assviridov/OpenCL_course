@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option working_dir="../.." />
 				<Option output="bin/Debug/VectorSumCL" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../.." />
 				<Option object_output="bin/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -20,8 +20,8 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option working_dir="../.." />
 				<Option output="bin/Release/VectorSumCL" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../.." />
 				<Option object_output="bin/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,8 +34,8 @@
 				</Linker>
 			</Target>
 			<Target title="Debug mac">
-				<Option working_dir="../.." />
 				<Option output="bin/Debug/VectorSumCL" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../.." />
 				<Option object_output="bin/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -48,8 +48,8 @@
 				</Linker>
 			</Target>
 			<Target title="Release mac">
-				<Option working_dir="../.." />
 				<Option output="bin/Release/VectorSumCL" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../.." />
 				<Option object_output="bin/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -68,9 +68,6 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="VectorSumCL.cpp" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

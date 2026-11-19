@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <string>
+#include <chrono>
 
 int main(int argc, char* argv[])
 {
@@ -48,6 +49,8 @@ int main(int argc, char* argv[])
 
     const int half = (K - 1) / 2;       // отступ от края до центра окна
 
+    auto tStart = std::chrono::steady_clock::now();
+
     double res = 0.0;
     for (int ch = 0; ch < N; ch++) {
         const double* bch = b[sel[ch]];
@@ -68,8 +71,12 @@ int main(int argc, char* argv[])
         if (verbose) std::cout << std::endl;
     }
 
+    auto tEnd = std::chrono::steady_clock::now();
+    double tNs = std::chrono::duration<double, std::nano>(tEnd - tStart).count();
+
     std::cout << std::fixed << std::setprecision(4)
               << "result: " << res / ((double)N * M) << std::endl;
+    std::cout << "CPU time: " << (long long)tNs << " ns" << std::endl;
 
     delete[] b[0];
     delete[] b[1];

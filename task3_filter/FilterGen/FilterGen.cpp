@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     if (argc > 4) seed = (unsigned)std::atoi(argv[4]);
     if (K % 2 == 0) K++;
     if (N < 1 || M < 1 || K < 1 || K > M) {
-        std::cout << "bad parameters (нужно: 1<=K<=M)" << std::endl;
+        std::cout << "bad parameters (need 1 <= K <= M)" << std::endl;
         return 1;
     }
 

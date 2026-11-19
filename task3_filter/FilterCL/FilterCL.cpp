@@ -116,8 +116,8 @@ int main()
         char log[8192];
         log[0] = '\0';
         clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, sizeof(log), log, NULL);
-        std::cout << "Ядро не скомпилировалось. Скорее всего не заполнено TODO 1.\n"
-                  << "--- журнал компилятора ---\n" << log << std::endl;
+        std::cout << "Kernel build failed. Most likely TODO 1 is not filled.\n"
+                  << "--- compiler log ---\n" << log << std::endl;
         return 1;
     }
     cl_kernel kernel = clCreateKernel(program, "filter", &err);
@@ -160,7 +160,7 @@ int main()
     // копируем результат обратно (дано)
     clEnqueueReadBuffer(queue, bufR, CL_TRUE, 0, sizeof(float) * (size_t)N * M, r, 0, NULL, NULL);
 
-    double tPipelineMs = std::chrono::duration<double, std::milli>(
+    double tPipelineNs = std::chrono::duration<double, std::nano>(
                              std::chrono::steady_clock::now() - tStart).count();
 
     // --- Измерение: только ядро, по событию (дано, не меняйте) ---
@@ -169,16 +169,15 @@ int main()
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_START, sizeof(cl_ulong), &tKernelStart, NULL) == CL_SUCCESS &&
         clGetEventProfilingInfo(kernelEvent, CL_PROFILING_COMMAND_END,   sizeof(cl_ulong), &tKernelEnd,   NULL) == CL_SUCCESS)
     {
-        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns ("
-                  << (tKernelEnd - tKernelStart) / 1000.0 << " us)" << std::endl;
+        std::cout << "GPU kernel only: " << (tKernelEnd - tKernelStart) << " ns" << std::endl;
         clReleaseEvent(kernelEvent);
     } else {
-        std::cout << "Нет данных профилирования: в TODO 2 не передано &kernelEvent" << std::endl;
+        std::cout << "No profiling data: &kernelEvent was not passed in TODO 2" << std::endl;
     }
 
     // полный цикл: обмен данными + ядро. Сравните с kernel-only:
     // разница - время передачи данных (на unified memory она мала)
-    std::cout << "GPU time (transfer + kernel): " << tPipelineMs << " ms" << std::endl;
+    std::cout << "GPU time (transfer + kernel): " << (long long)tPipelineNs << " ns" << std::endl;
 
     // --- Часть A: печать массива r (дано; печатается, если данных немного) ---
     if ((size_t)N * M <= 100) {
