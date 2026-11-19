@@ -15,19 +15,22 @@
 const int M = 8;   // строк
 const int N = 5;   // столбцов
 
-void sum(const int* A, const int* B, int* C, int m, int n)
+void sum(const int* A, const int* B, int* C, int M, int N)
 {
-    for (int i = 0; i < m; i++)          // по строкам
-        for (int j = 0; j < n; j++)      // по столбцам
-            C[i * n + j] = A[i * n + j] + B[i * n + j];
+    for (int row = 0; row < M; row++)        // по строкам  (внешний цикл)
+        for (int col = 0; col < N; col++)    // по столбцам (внутренний цикл)
+        {
+            int i = row * N + col;           // индекс: та же формула, что в ядре
+            C[i] = A[i] + B[i];
+        }
 }
 
-void print(const int* X, int m, int n, const char* name)
+void print(const int* X, int M, int N, const char* name)
 {
     std::cout << name << ":" << std::endl;
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++)
-            std::cout << X[i * n + j] << "\t";
+    for (int row = 0; row < M; row++) {
+        for (int col = 0; col < N; col++)
+            std::cout << X[row * N + col] << "\t";
         std::cout << std::endl;
     }
 }

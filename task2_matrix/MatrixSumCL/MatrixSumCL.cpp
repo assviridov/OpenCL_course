@@ -31,9 +31,9 @@ const char* kernelSource =
 "                  const int M,\n"
 "                  const int N)\n"
 "{\n"
-"    int col = get_global_id(0);            // номер столбца\n"
-"    int row = get_global_id(1);            // номер строки\n"
-"    int i = row * N + col;                 // тот же индекс, что в CPU-версии\n"
+"    int col = get_global_id(0);      // как внутренний цикл CPU-версии (столбцы)\n"
+"    int row = get_global_id(1);      // как внешний цикл CPU-версии (строки)\n"
+"    int i = row * N + col;           // индекс: та же формула, что в CPU-версии\n"
 "    C[i] = A[i] + B[i];\n"
 "}\n";
 
