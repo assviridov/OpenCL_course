@@ -153,9 +153,9 @@ __kernel void sum(__global const int *A,
                   const int M,               // строк
                   const int N)               // столбцов
 {
-    int col = get_global_id(0);              // внутренний цикл CPU-версии
-    int row = get_global_id(1);              // внешний цикл CPU-версии
-    int i = row * N + col;                   // та же формула, что в CPU-версии
+    int col = get_global_id(0);      // как внутренний цикл CPU-версии (столбцы)
+    int row = get_global_id(1);      // как внешний цикл CPU-версии (строки)
+    int i = row * N + col;           // индекс: та же формула, что в CPU-версии
     C[i] = A[i] + B[i];
 }
 ```
