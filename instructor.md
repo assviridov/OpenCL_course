@@ -128,6 +128,11 @@ if (pos >= pad && pos < M - pad) {        // окно целиком внутр�
 R[(size_t)ch * M + pos] = r;
 ```
 
+Шаблон содержит строку-заглушку `TODO_1_NOT_IMPLEMENTED_YET;` — пока студент не заменит
+её кодом, `clBuildProgram` падает: программа намеренно не «работает» с пустым ядром
+(гейт по TODO 1). Дальше лестница: TODO 2 не заполнено → «No profiling data…»,
+TODO 3 не заполнено → в выводе нет строки `result`.
+
 **TODO 2 — запуск:**
 ```cpp
 size_t global[2] = { (size_t)M, (size_t)N };
