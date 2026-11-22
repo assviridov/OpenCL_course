@@ -14,3 +14,6 @@ obj/
 
 # generated test data
 input.txt
+
+# Moodle test bank (импортирован в Moodle, в репозитории не хранится)
+OpenCL_entry_test_moodle.xml
