@@ -103,8 +103,13 @@
 
 ### Что раздавать
 
-- Раздача — **папка `student/` целиком** (в ней уже только то, что нужно студенту:
-  README, example.txt, workspace на 3 проекта, FilterGen, FilterCheck, FilterCL).
+- **Студентам выдается отдельный публичный репозиторий**:
+  [github.com/assviridov/OpenCL_student](https://github.com/assviridov/OpenCL_student).
+  В нём: единый документ (`README.md` + `README.pdf` — установка Windows, конспект
+  занятия, постановка ДЗ, критерии), проекты задач 1–2 (`task1_vectors/`,
+  `task2_matrix/`) и ДЗ (`task3_filter/`: шаблон с TODO, генератор, эталон, workspace).
+  Студент делает `git clone` — папка `student/` этого репозитория больше не используется
+  для раздачи.
 - Рабочая копия преподавателя с ответами: `task3_filter/` (включая `FilterCL_solution/`).
 - Порядок работы у студента: `FilterGen 8 1000 101 7` → `FilterCheck` → заполняет `FilterCL`.
 
