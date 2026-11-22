@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<CodeBlocks_workspace_file>
-	<Workspace title="OpenCL_hw">
-		<Project filename="student/FilterGen/FilterGen.cbp" />
-		<Project filename="student/FilterCheck/FilterCheck.cbp" />
-		<Project filename="student/FilterCL/FilterCL.cbp" />
-	</Workspace>
-</CodeBlocks_workspace_file>
