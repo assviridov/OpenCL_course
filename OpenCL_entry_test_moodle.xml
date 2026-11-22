@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/A. Параллелизм и GPU]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>A1. Тип параллелизма (измерение роста)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Нужно посчитать средний рост 10 000 студентов. Десять человек измеряют по 1 000 студентов каждый, затем результаты объединяются. Какой тип организации вычислений это иллюстрирует?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Последовательное выполнение: один человек измеряет всех по очереди]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Параллелизм данных: одна операция применяется к разным частям данных]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Конвейерный параллелизм: выход одного этапа становится входом следующего]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Параллелизм задач: разные функции выполняются одновременно]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>A2. CPU vs GPU</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Какое утверждение о сравнении архитектур CPU и GPU верно?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[CPU содержит тысячи простых ядер, GPU — несколько сложных]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[GPU содержит тысячи простых ядер при более низкой тактовой частоте и малом кэше]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[У GPU выше тактовая частота и больше кэша, чем у CPU]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[GPU и CPU архитектурно одинаковы, различие только в стоимости]]></text>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>A3. GPU всегда быстрее (верно/неверно)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Верно или неверно: «GPU всегда быстрее CPU для любой программы — достаточно переписать её под GPU».]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/B. Host, device, kernel]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="matching">
+    <name>
+      <text>B1. Host, device, kernel, thread (соответствие)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Сопоставьте термин и его значение:]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[host]]></text>
+      <answer>
+        <text><![CDATA[Управляющая программа, работающая на CPU]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[device]]></text>
+      <answer>
+        <text><![CDATA[Вычислительное устройство (например, GPU)]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[kernel]]></text>
+      <answer>
+        <text><![CDATA[Функция, выполняемая параллельно на устройстве]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[thread]]></text>
+      <answer>
+        <text><![CDATA[Минимальная единица выполнения]]></text>
+      </answer>
+    </subquestion>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>B2. Роль host-части программы</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Что делает host-часть программы (main)?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Инициализирует устройство, распределяет память, копирует данные, запускает ядро и забирает результат обратно]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Сама выполняет все массовые вычисления вместо GPU]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Компилирует ядро на этапе сборки проекта компилятором C++]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Только организует ввод-вывод через консоль]]></text>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>B3. Ограничения функций на устройстве (верно/неверно)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Верно или неверно: «Внутри функции, исполняемой на устройстве, допустимы рекурсия и статические переменные».]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>true</text>
+    </answer>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>false</text>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/C. Компоненты OpenCL и порядок работы]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>C1. Что такое OpenCL</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Что такое OpenCL?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Открытый стандарт Khronos Group для параллельных вычислений на CPU, GPU, FPGA и DSP]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Проприетарная технология NVIDIA для программирования GPU]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Язык аппаратного описания для ПЛИС (FPGA)]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Графический API для рендеринга трёхмерной графики]]></text>
+    </answer>
+  </question>
+  <question type="matching">
+    <name>
+      <text>C2. Компоненты OpenCL (соответствие)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Сопоставьте компонент OpenCL и его назначение:]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Platform]]></text>
+      <answer>
+        <text><![CDATA[Набор устройств одного производителя]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Device]]></text>
+      <answer>
+        <text><![CDATA[Вычислительное устройство: GPU, CPU, FPGA]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Context]]></text>
+      <answer>
+        <text><![CDATA[Объединяет устройства и буферы памяти]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Command Queue]]></text>
+      <answer>
+        <text><![CDATA[Очередь команд: копирование данных, вычисления, синхронизация]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Program]]></text>
+      <answer>
+        <text><![CDATA[Исходный код ядра]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Kernel]]></text>
+      <answer>
+        <text><![CDATA[Функция, исполняемая параллельно на устройстве]]></text>
+      </answer>
+    </subquestion>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>C3. Порядок действий host-программы</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Выберите правильный порядок действий host-программы:]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Получить platform и device → создать context и очередь → создать буферы и загрузить данные → собрать ядро → задать аргументы и запустить ядро → прочитать результат]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Создать буферы → прочитать результат → собрать ядро → получить устройства]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Запустить ядро → создать очередь → скопировать данные → собрать ядро]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Собрать ядро → создать буферы → прочитать результат → скопировать данные]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>C4. Где задаётся ядро и когда компилируется</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Где задаётся исходный код ядра и когда он компилируется?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Строкой на C/C++ внутри host-программы; компилируется драйвером OpenCL во время выполнения программы]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Отдельным файлом .cl, компилируемым вместе с main() компилятором C++]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Встроенной функцией C++, компилируемой вместе с main()]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Заранее собранной бинарной библиотекой производителя драйвера]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>C5. Флаг буфера результата</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Буфер, в который device записывает результат, а host затем читает его, следует создать с флагом…]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[CL_MEM_READ_ONLY]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[CL_MEM_WRITE_ONLY]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[CL_MEM_READ_WRITE]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[CL_MEM_USE_HOST_PTR]]></text>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>C6. clFinish (верно/неверно)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Верно или неверно: «clFinish(queue) возвращает управление host-программе только после завершения всех команд, поставленных в очередь».]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>C7. Ошибка в ядре — когда обнаружится</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[В коде ядра допущена синтаксическая ошибка (использована необъявленная переменная). Как программа сообщит о проблеме?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[При запуске программы: clBuildProgram вернёт ошибку, host напечатает журнал компилятора OpenCL]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[При сборке проекта компилятором C++ — как ошибку компиляции main()]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ядро молча проигнорирует ошибочную строку]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Ошибку обнаружит только операционная система при завершении процесса]]></text>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/D. Топология задачи и индексация]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>D1. work-item</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Одно выполнение ядра одним исполнителем называется…]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[work-item]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[work-group]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[context]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[command queue]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>D2. Число work-item для сетки {8, 5}</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Сетка запуска двумерная: global_work_size = {8, 5}. Сколько всего work-item’ов будет запущено?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[8]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[13]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[40]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[80]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>D3. Линейный индекс (row-major)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Матрица хранится построчно (row-major), в строке N = 5 столбцов. Чему равен линейный индекс элемента (row = 2, col = 3)?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[6]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[10]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[13]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[15]]></text>
+    </answer>
+  </question>
+  <question type="truefalse">
+    <name>
+      <text>D4. Рабочие группы и локальная память (верно/неверно)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Верно или неверно: «Локальный размер задаёт деление глобального размера на рабочие группы; потоки одной рабочей группы могут обмениваться данными через локальную память».]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <answer fraction="100" format="moodle_auto_format">
+      <text>true</text>
+    </answer>
+    <answer fraction="0" format="moodle_auto_format">
+      <text>false</text>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/E. Модель памяти OpenCL]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>E1. Память для обмена внутри рабочей группы</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Какая память используется для быстрого обмена данными между потоками одной рабочей группы?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Global]]></text>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Local]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Private]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Constant]]></text>
+    </answer>
+  </question>
+  <question type="matching">
+    <name>
+      <text>E2. Типы памяти (соответствие)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[Сопоставьте тип памяти OpenCL и её свойство:]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <shuffleanswers>true</shuffleanswers>
+    <subquestion format="html">
+      <text><![CDATA[Global]]></text>
+      <answer>
+        <text><![CDATA[Всё устройство, доступ всем потокам]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Local]]></text>
+      <answer>
+        <text><![CDATA[Внутри рабочей группы]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Private]]></text>
+      <answer>
+        <text><![CDATA[Только один поток]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[Constant]]></text>
+      <answer>
+        <text><![CDATA[Только чтение, кэшируемая]]></text>
+      </answer>
+    </subquestion>
+  </question>
+  <question type="category">
+    <category>
+      <text><![CDATA[$course$/top/OpenCL входной тест/F. Мост к практике]]></text>
+    </category>
+    <info format="moodle_auto_format">
+      <text></text>
+    </info>
+    <idnumber></idnumber>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>F1. Почему CPU-замер показывает 0</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[CPU-версия складывает 40 элементов матрицы за ~0,1 микросекунды, но программа выводит время выполнения 0. Почему?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Длительность операции меньше гранулярности системного таймера]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Операция не выполнялась — программа её пропустила]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Таймер сломан на этой машине]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Windows отключает таймер для коротких операций]]></text>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>F2. Когда GPU обгонит CPU</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[В каком случае GPU-версия почти наверняка обгонит CPU-версию?]]></text>
+    </questiontext>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <answer fraction="100" format="html">
+      <text><![CDATA[Когда на один байт данных приходится много однотипных вычислений]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Когда данных много, а вычислений почти нет]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Когда данные и результат занимают по 40 элементов]]></text>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[Когда в ядре много условных переходов]]></text>
+    </answer>
+  </question>
+</quiz>
